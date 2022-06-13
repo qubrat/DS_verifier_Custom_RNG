@@ -55,7 +55,7 @@ def trng_algorithm(filepath):
     B2 = 0
     skipCount = 0
 
-    while len(bit_result) < 1024:
+    while len(bit_result) < 2048:
         R = frame[y, x, 2]
         G = frame[y, x, 1]
         B = frame[y, x, 0]
@@ -113,4 +113,5 @@ def trng_algorithm(filepath):
         result_tmp.append(str(int(tmp, 2)))
 
     result = "".join(result_tmp)
+    print(result.encode('utf-8'))
     return result.encode('utf-8')

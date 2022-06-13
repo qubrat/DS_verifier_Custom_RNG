@@ -73,35 +73,34 @@ def generate_keys():
         status_label["fg"] = "black"
         status_label["text"] = "Generating RSA key pair..."
         status_value["text"] = ""
-        # try:
-        status_label["fg"] = "black"
+        try:
+            status_label["fg"] = "black"
 
-        random_data = randomsource.Source()
-        key = RSA.generate(2048, random_data.execute)
-        # Generate private key
-        print("Generating private key...")
-        private_key = key.export_key()
-        file_out = open("private.pem", "wb")
-        file_out.write(private_key)
-        file_out.close()
-        print("Done.")
-        # Generate public key
-        print("Generating public key...")
-        public_key = key.public_key().export_key()
-        file_out = open("public.pem", "wb")
-        file_out.write(public_key)
-        file_out.close()
-        # Update labels
-        status_label["text"] = "Generated RSA key pair."
-        status_value["text"] = ""
-        print("Done.")
-        print("You can sign a file now.")
-        # Update buttons availability
-        sign_button["state"] = "normal"
+            randomsource.generate()
+            # Generate private key
+            print("Generating private key...")
+            private_key = key.export_key()
+            file_out = open("private.pem", "wb")
+            file_out.write(private_key)
+            file_out.close()
+            print("Done.")
+            # Generate public key
+            print("Generating public key...")
+            public_key = key.public_key().export_key()
+            file_out = open("public.pem", "wb")
+            file_out.write(public_key)
+            file_out.close()
+            # Update labels
+            status_label["text"] = "Generated RSA key pair."
+            status_value["text"] = ""
+            print("Done.")
+            print("You can sign a file now.")
+            # Update buttons availability
+            sign_button["state"] = "normal"
 
-        # except TypeError:
-        #     print("Key generation failed, sorry, shit happens. Try again.")
-        #     status_label["text"] = "Key generation failed, sorry, shit happens. Try again."
+        except TypeError:
+            print("Key generation failed, sorry, shit happens. Try again.")
+            status_label["text"] = "Key generation failed, sorry, shit happens. Try again."
 
 
 def sign_file():
